@@ -13,3 +13,4 @@
 # .Net Core Project Setting
 appsettings.json
 appsettings.Development.json
+web.config
