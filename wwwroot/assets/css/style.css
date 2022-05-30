@@ -52,7 +52,7 @@ element.style {
      margin-bottom: unset !important; 
 }
 
-.form-control:not(input[type='password']) {
+.form-control:not(input[type='password'],.ccnormal) {
     padding: 0.35rem 0.55rem !important;
     text-transform: uppercase;
 }
