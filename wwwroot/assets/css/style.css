@@ -1,0 +1,103 @@
+﻿body {
+}
+
+.table > :not(caption) > * > * {
+    padding: 0.25rem 0.25rem !important;
+}
+
+table.last-py-0 td:last-child {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+table.last-py-0 .list-inline-item:not(:last-child) {
+    margin-right: 0.0rem !important;
+}
+
+.min-width-150 {
+    min-width: 150px !important;
+}
+
+.input-group-text {
+    padding: 0.5rem 1.5rem !important;
+}
+
+.form-icon i {
+    left: 20px !important;
+}
+
+label.required::after {
+    content: '*';
+    color: red;
+}
+
+.col-form-label {
+    padding-top: calc(0.25rem + 1px);
+    padding-bottom: calc(0.25rem + 1px);
+    font-weight: 500 !important;
+}
+
+.card-header {
+    border-top: 1px solid var(--vz-border-color);
+}
+
+element.style {
+}
+
+.choices[data-type*=select-one] {
+    cursor: pointer;
+}
+
+.choices {
+     margin-bottom: unset !important; 
+}
+
+.form-control:not(input[type='password']) {
+    padding: 0.35rem 0.55rem !important;
+    text-transform: uppercase;
+}
+
+.search-form .form-control {
+    text-transform: unset !important;
+}
+
+.search-form .form-icon i {
+    left: 20px !important;
+}
+
+.search-box .form-control {
+    padding-left: 40px !important;
+}
+
+.choices__inner {
+    min-height: auto !important;
+}
+
+.choices__list--single {
+    padding: 2px 16px 1px 1px !important;
+}
+
+.text-danger {
+    display: none;
+}
+
+.is-invalid ~ .text-danger, .is-invalid ~ .invalid-tooltip, .was-validated :invalid ~ .text-danger, .was-validated :invalid ~ .invalid-tooltip {
+    display: block;
+}
+
+.form-control.is-valid, .was-validated .form-control:valid {
+    border: 1px solid var(--vz-input-border) !important;
+    background-image: none !important;
+}
+
+.form-control.is-invalid, .was-validated .form-control:invalid {
+    background-image: none;
+}
+
+.btn {
+    padding: 0.32rem 0.9rem !important;
+}
+
+.gridjs-head{
+    padding-left: 0px !important;
+}
