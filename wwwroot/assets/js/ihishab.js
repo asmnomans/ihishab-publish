@@ -1,4 +1,36 @@
-﻿var userSelection = Object.values(document.getElementsByClassName('only-number'));
+﻿//axios.interceptors.request.use(
+//    function (successfulReq) {
+//        console.log("Start axios");
+//    },
+//    function (error) {
+//        console.log("Error axios");
+//    }
+//);
+//axios.interceptors.request.use(function (config) {
+//    console.log("Start axios");
+//    return config
+//}, function (error) {
+//    return Promise.reject(error);
+//});
+
+//axios.interceptors.response.use(function (response) {
+//    console.log("End axios");
+//    return response;
+//}, function (error) {
+//    return Promise.reject(error);
+//});
+
+//axios.interceptors.request.use(req => {
+//    // `req` is the Axios request config, so you can modify
+//    // the `headers`.
+//    debugger;
+//    console.log("Start axios");
+//    return req;
+//});
+
+var choice_list = {};
+
+var userSelection = Object.values(document.getElementsByClassName('only-number'));
 userSelection.forEach(link => {
     ValueWrapper(link);
     link.addEventListener('blur', event => {
@@ -169,7 +201,7 @@ userSelection.forEach(item => {
     if (isChoicesVal["data-choices-text-disabled-true"]) {
         choiceData.addItems = false;
     }
-    isChoicesVal["data-choices-text-disabled-true"]
+    choice_list[item.getAttribute('id')] = isChoicesVal["data-choices-text-disabled-true"]
         ? new Choices(item, choiceData).disable()
         : new Choices(item, choiceData);
 });

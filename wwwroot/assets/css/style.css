@@ -41,7 +41,8 @@ label.required::after {
     border-top: 1px solid var(--vz-border-color);
 }
 
-element.style {
+.badge {
+    font-size: 0.825rem;
 }
 
 .choices[data-type*=select-one] {
@@ -100,4 +101,8 @@ element.style {
 
 .gridjs-head{
     padding-left: 0px !important;
+}
+
+.only-currency, .only-number, .only-price {
+    text-align: right !important;
 }
