@@ -53,6 +53,11 @@ label.required::after {
      margin-bottom: unset !important; 
 }
 
+.choices__item choices__placeholder choices__item--selectable {
+    overflow: hidden !important;
+    max-height: 15px;
+}
+
 .form-control:not(input[type='password'],.ccnormal) {
     padding: 0.35rem 0.55rem !important;
     text-transform: uppercase;
