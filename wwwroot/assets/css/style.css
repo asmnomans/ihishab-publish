@@ -111,3 +111,28 @@ label.required::after {
 .only-currency, .only-number, .only-price {
     text-align: right !important;
 }
+
+.company_caption .choices__inner {
+    background-color: transparent !important;
+    padding: 0px 10px !important;
+    border: none !important;
+}
+
+.company_caption .choices__inner .choices__list.choices__list--single {
+    color: rgba(255,255,255,.85) !important;
+    font-size: 2.825rem !important;
+    font-weight: bolder !important;
+}
+
+.company_caption .choices[data-type*=select-one]:after {
+    color: rgba(255,255,255,.85) !important;
+    top: 31% !important;
+}
+
+.was-validated :invalid ~ .choices > .choices__inner {
+    border-color: #ed5e5e;
+}
+
+.was-validated :invalid ~ .choices div.choices__item.choices__placeholder.choices__item--selectable {
+    color: #ed5e5e;
+}

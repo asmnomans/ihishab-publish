@@ -28,6 +28,23 @@
 //    return req;
 //});
 
+function show_loader() {
+    Swal.fire({
+        title: "",
+        width: 200,
+        html: "Please wait...",
+        timerProgressBar: !0,
+        showCloseButton: !1,
+        didOpen: function () {
+            Swal.showLoading()
+        }
+    });
+};
+
+function hide_loader() {
+    Swal.close();
+}
+
 var choice_list = {};
 
 var userSelection = Object.values(document.getElementsByClassName('only-number'));
@@ -148,63 +165,71 @@ userSelection.forEach(link => {
     flatpickr(link, dateData);
 });
 
+function make_choice(selector) {
+    userSelection = Object.values(document.querySelectorAll(selector));
+    userSelection.forEach(item => {
+        var choiceData = {};
+        var isChoicesVal = item.attributes;
+        if (isChoicesVal["data-choices-groups"]) {
+            choiceData.placeholderValue = "This is a placeholder set in the config";
+        }
+        if (isChoicesVal["data-choices-search-false"]) {
+            choiceData.searchEnabled = false;
+        }
+        //if (isChoicesVal["data-choices-search-true"]) {
+        else {
+            choiceData.searchEnabled = true;
+        }
+        if (isChoicesVal["data-choices-removeItem"]) {
+            choiceData.removeItemButton = true;
+        }
+        if (isChoicesVal["data-choices-sorting-false"]) {
+            choiceData.shouldSort = false;
+        }
+        if (isChoicesVal["data-choices-sorting-true"]) {
+            choiceData.shouldSort = true;
+        }
+        if (isChoicesVal["data-choices-multiple-default"]) {
+            // choiceData.removeItemButton=true
+        }
+        if (isChoicesVal["data-choices-multiple-groups"]) {
+            // choiceData.removeItemButton=true
+        }
+        if (isChoicesVal["data-choices-multiple-remove"]) {
+            choiceData.removeItemButton = true;
+        }
+        if (isChoicesVal["data-choices-limit"]) {
+            choiceData.maxItemCount =
+                isChoicesVal["data-choices-limit"].value.toString();
+        }
+        if (isChoicesVal["data-choices-limit"]) {
+            choiceData.maxItemCount =
+                isChoicesVal["data-choices-limit"].value.toString();
+        }
+        if (isChoicesVal["data-choices-editItem-true"]) {
+            choiceData.maxItemCount = true;
+        }
+        if (isChoicesVal["data-choices-editItem-false"]) {
+            choiceData.maxItemCount = false;
+        }
+        if (isChoicesVal["data-choices-text-unique-true"]) {
+            choiceData.duplicateItemsAllowed = false;
+        }
+        if (isChoicesVal["data-choices-text-disabled-true"]) {
+            choiceData.addItems = false;
+        }
+        choice_list[item.getAttribute('id')] = isChoicesVal["data-choices-text-disabled-true"]
+            ? new Choices(item, choiceData).disable()
+            : new Choices(item, choiceData);
 
-userSelection = Object.values(document.getElementsByClassName('form-select'));
-userSelection.forEach(item => {
-    var choiceData = {};
-    var isChoicesVal = item.attributes;
-    if (isChoicesVal["data-choices-groups"]) {
-        choiceData.placeholderValue = "This is a placeholder set in the config";
-    }
-    if (isChoicesVal["data-choices-search-false"]) {
-        choiceData.searchEnabled = false;
-    }
-    //if (isChoicesVal["data-choices-search-true"]) {
-    else {
-        choiceData.searchEnabled = true;
-    }
-    if (isChoicesVal["data-choices-removeItem"]) {
-        choiceData.removeItemButton = true;
-    }
-    if (isChoicesVal["data-choices-sorting-false"]) {
-        choiceData.shouldSort = false;
-    }
-    if (isChoicesVal["data-choices-sorting-true"]) {
-        choiceData.shouldSort = true;
-    }
-    if (isChoicesVal["data-choices-multiple-default"]) {
-        // choiceData.removeItemButton=true
-    }
-    if (isChoicesVal["data-choices-multiple-groups"]) {
-        // choiceData.removeItemButton=true
-    }
-    if (isChoicesVal["data-choices-multiple-remove"]) {
-        choiceData.removeItemButton = true;
-    }
-    if (isChoicesVal["data-choices-limit"]) {
-        choiceData.maxItemCount =
-            isChoicesVal["data-choices-limit"].value.toString();
-    }
-    if (isChoicesVal["data-choices-limit"]) {
-        choiceData.maxItemCount =
-            isChoicesVal["data-choices-limit"].value.toString();
-    }
-    if (isChoicesVal["data-choices-editItem-true"]) {
-        choiceData.maxItemCount = true;
-    }
-    if (isChoicesVal["data-choices-editItem-false"]) {
-        choiceData.maxItemCount = false;
-    }
-    if (isChoicesVal["data-choices-text-unique-true"]) {
-        choiceData.duplicateItemsAllowed = false;
-    }
-    if (isChoicesVal["data-choices-text-disabled-true"]) {
-        choiceData.addItems = false;
-    }
-    choice_list[item.getAttribute('id')] = isChoicesVal["data-choices-text-disabled-true"]
-        ? new Choices(item, choiceData).disable()
-        : new Choices(item, choiceData);
-});
+        let parent_element = document.getElementById(item.getAttribute('id')).parentElement.parentElement.parentElement;
+        let fragment = document.createDocumentFragment();
+        fragment.appendChild(document.getElementById(item.getAttribute('id')));
+        parent_element.prepend(fragment);
+    });
+}
+
+make_choice('.form-select');
 
 function pre_save() {
     userSelection = Object.values(document.getElementsByClassName('only-price'));
