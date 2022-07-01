@@ -231,6 +231,13 @@ function make_choice(selector) {
 
 make_choice('.form-select');
 
+userSelection = Object.values(document.getElementsByClassName('text-danger'));
+userSelection.forEach(link => {
+    if (link.closest('div').querySelectorAll('[data-val-required]').length > 0) {
+        link.innerHTML = link.closest('div').querySelectorAll('[data-val-required]')[0].getAttribute('data-val-required');
+    }
+});
+
 function pre_save() {
     userSelection = Object.values(document.getElementsByClassName('only-price'));
     userSelection.forEach(item => {
