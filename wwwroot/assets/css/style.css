@@ -120,13 +120,17 @@ label.required::after {
 
 .company_caption .choices__inner .choices__list.choices__list--single {
     color: rgba(255,255,255,.85) !important;
-    font-size: 2.825rem !important;
+    font-size: 2rem !important;
     font-weight: bolder !important;
 }
 
 .company_caption .choices[data-type*=select-one]:after {
     color: rgba(255,255,255,.85) !important;
-    top: 31% !important;
+    top: 35% !important;
+}
+
+.company_caption .choices[data-type*=select-one]:after {
+    right: 12.5px !important;
 }
 
 .was-validated :invalid ~ .choices > .choices__inner {
