@@ -53,6 +53,10 @@ label.required::after {
      margin-bottom: unset !important; 
 }
 
+td .choices {
+    margin-top: -4px !important;
+}
+
 .choices__item choices__placeholder choices__item--selectable {
     overflow: hidden !important;
     max-height: 15px;
@@ -79,8 +83,23 @@ label.required::after {
     min-height: auto !important;
 }
 
+td .choices__inner{
+    padding: 0px !important;
+    border: none !important;
+    background-color: transparent !important;
+}
+
 .choices__list--single {
     padding: 2px 16px 1px 1px !important;
+}
+
+td .choices__list--single {
+    padding: 0px 16px 0px 0px !important;
+}
+
+td .choices[data-type*=select-one]:after {
+    top: 55% !important;
+    right: 3.5px !important;
 }
 
 .text-danger {
@@ -102,6 +121,10 @@ label.required::after {
 
 .btn {
     padding: 0.32rem 0.9rem !important;
+}
+
+tfoot .btn {
+    padding: 0rem 0.9rem !important;
 }
 
 .gridjs-head{
