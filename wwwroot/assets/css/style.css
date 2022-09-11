@@ -67,6 +67,10 @@ td .choices {
     text-transform: uppercase;
 }
 
+td .form-control:not(input[type='password'],.ccnormal,textarea) {
+    padding: 20% 0.55rem !important;
+}
+
 .search-form .form-control {
     text-transform: unset !important;
 }
@@ -83,8 +87,8 @@ td .choices {
     min-height: auto !important;
 }
 
-td .choices__inner{
-    padding: 0px !important;
+td .choices__inner {
+    padding: 7% 0px !important;
     border: none !important;
     background-color: transparent !important;
 }
@@ -102,12 +106,24 @@ td .choices[data-type*=select-one]:after {
     right: 3.5px !important;
 }
 
+td .form-control {
+    border: none !important;
+}
+
+.force-validation-off {
+    border: none !important;
+}
+
 .text-danger {
     display: none;
 }
 
 .is-invalid ~ .text-danger, .is-invalid ~ .invalid-tooltip, .was-validated :invalid ~ .text-danger, .was-validated :invalid ~ .invalid-tooltip {
     display: block;
+}
+
+td .form-control.is-valid, .was-validated td .form-control:valid {
+    border: none !important;
 }
 
 .form-control.is-valid, .was-validated .form-control:valid {
