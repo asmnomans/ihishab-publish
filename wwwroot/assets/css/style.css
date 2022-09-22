@@ -67,7 +67,7 @@ td .choices {
     text-transform: uppercase;
 }
 
-td .form-control:not(input[type='password'],.ccnormal,textarea) {
+tr.height-override td .form-control:not(input[type='password'],.ccnormal,textarea) {
     padding: 20% 0.55rem !important;
 }
 
@@ -87,8 +87,11 @@ td .form-control:not(input[type='password'],.ccnormal,textarea) {
     min-height: auto !important;
 }
 
-td .choices__inner {
+tr.height-override td .choices__inner {
     padding: 7% 0px !important;
+}
+
+td .choices__inner {
     border: none !important;
     background-color: transparent !important;
 }
@@ -97,12 +100,15 @@ td .choices__inner {
     padding: 2px 16px 1px 1px !important;
 }
 
-td .choices__list--single {
+tr.height-override td .choices__list--single {
     padding: 0px 16px 0px 0px !important;
 }
 
-td .choices[data-type*=select-one]:after {
+tr.height-override td .choices[data-type*=select-one]:after {
     top: 55% !important;
+}
+
+td .choices[data-type*=select-one]:after {
     right: 3.5px !important;
 }
 
