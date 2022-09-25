@@ -28,6 +28,29 @@
 //    return req;
 //});
 
+function change_company(value) {
+    //console.log('customerid => ', event.target.value);
+    let _data = new FormData();
+    _data.append('id', value);
+
+    //show_loader();
+    axios.post('/company/updatedefaultcompany', _data)
+    .then(function (response) {
+        console.log(response.data);
+        //choice_list['ParentId'].setChoices(response.data);
+    })
+    .catch(function (error) {
+        //document.getElementById('ShippingAddress').value = '';
+
+        console.log(error);
+    })
+    .finally(() => {
+        // settled (fulfilled or rejected)
+        //choice_list['ParentId'].removeActiveItems();
+        location.reload();
+    });
+};
+
 function show_loader() {
     Swal.fire({
         title: "",
