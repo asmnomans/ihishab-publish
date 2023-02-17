@@ -330,13 +330,21 @@ function download_excel(id, with_data) {
     show_loader();
     axios.post('/miscellaneous/exporttoexcel', data, config)
     .then(function (response) {
-        console.log(response.data);
+        //console.log(response.data);
         //document.getElementById('tbl-upload-list').getElementsByTagName('tbody')[0].innerHTML = response.data;
 
         const url = window.URL.createObjectURL(new Blob([response.data]));
         const link = document.createElement('a');
         link.href = url;
-        link.setAttribute('download', id + (with_data == true ? '_opening.xlsx' : '_list.xlsx'));
+        let file_name = "";
+        if (id == "coa_excel") {
+            file_name = "COA_Excel.xlsx";
+        }
+        else {
+            file_name = id + (with_data == true ? "_opening.xlsx" : "_list.xlsx");
+        }
+        console.log('file name ->', file_name);
+        link.setAttribute('download', file_name);
         document.body.appendChild(link);
         link.click();
 
@@ -359,5 +367,58 @@ function download_excel(id, with_data) {
         });
         console.log(error);
     });
+};
+
+function download_pdf(id, with_data) {
+    let file_name = "";
+    if (id == "coa_pdf") {
+        file_name = "ChartOfAccount.pdf";
+    }
+    else {
+        file_name = id + (with_data == true ? "_opening.pdf" : "_list.pdf");
+    }
+
+    let config = {
+        headers: {
+            'Content-Disposition': "attachment; filename=" + file_name,
+            'Content-Type': 'application/pdf'
+        },
+        responseType: 'blob'
+    };
+
+    let data = new FormData();
+    data.append('id', id);
+    data.append('with_data', with_data);
+    show_loader();
+    axios.post('/miscellaneous/exporttopdf', data, config)
+        .then(function (response) {
+            //console.log(response.data);
+            const url = window.URL.createObjectURL(new Blob([response.data]));
+            const link = document.createElement('a');
+            link.href = url;
+            console.log('file name ->', file_name);
+            link.setAttribute('download', file_name);
+            document.body.appendChild(link);
+            link.click();
+
+            hide_loader();
+        })
+        .catch(function (error) {
+            Swal.fire({
+                html:
+                    '<div class="mt-3"><lord-icon src="@Url.Content("~")/assets/images/lord-icons/tdrtiskw.json" trigger="loop" colors="primary:#f06548,secondary:#f7b84b" style="width:120px;height:120px"></lord-icon><div class="mt-4 pt-2 fs-15"><h4>Oops...! Something went Wrong !</h4><p class="text-muted mx-4 mb-0">Unknown error occured.</p></div></div>',
+                showCancelButton: !0,
+                showConfirmButton: !1,
+                cancelButtonClass: "btn btn-primary w-xs mb-1",
+                cancelButtonText: "Dismiss",
+                buttonsStyling: !1,
+                showCloseButton: !0,
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+            }).then(function (t) {
+                post_save();
+            });
+            console.log(error);
+        });
 };
 

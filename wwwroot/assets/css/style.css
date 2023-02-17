@@ -185,3 +185,26 @@ tfoot .btn {
 .was-validated :invalid ~ .choices div.choices__item.choices__placeholder.choices__item--selectable {
     color: #ed5e5e;
 }
+
+.ri-folders-fill {
+    color: lightcoral;
+}
+
+a.jstree-anchor:has(.ri-folders-fill) {
+    font-weight: bold !important;
+}
+
+a.jstree-anchor.jstree-clicked {
+    font-style: italic !important;
+}
+
+.ri-sim-card-2-fill {
+    color: cornflowerblue !important;
+}
+
+.footer {
+    position: fixed !important;
+    box-shadow: 0 2px 24px rgb(15 34 58 / 12%) !important;
+    padding: 15px calc(1.5rem / 2) !important;
+    height: 50px !important;
+}
