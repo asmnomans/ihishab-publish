@@ -1,0 +1,69 @@
+﻿@using Stimulsoft.Report.Mvc;
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="icon" href="~/common/theme/images/favicon.ico" />
+    <title>Report:: @ViewBag.title - Inventory & Procurement Managing System</title>
+    <style>
+        #mvcReport {
+            min-height: 95vh !important;
+            height: 97vh !important;
+        }
+    </style>
+    <script>
+        $(document).on('click', '.stiMvcViewerStandartSmallButton.stiMvcViewerStandartSmallButtonDefault:eq(0)', function () {
+            console.log('click working');
+        });
+    </script>
+</head>
+<body>
+    @Html.Stimulsoft().StiMvcViewer("mvcReport", new StiMvcViewerOptions()
+            {
+                Actions =
+                {
+                    GetReportSnapshot = "GetReportSnapshot",
+                    ViewerEvent = "ViewerEvent",
+                    PrintReport = "PrintReport",
+                    ExportReport = "ExportReport",
+                },
+                Toolbar =
+                {
+                    ShowBookmarksButton = false,
+                    ShowParametersButton = false,
+                    ShowFullScreenButton = false,
+                    ShowAboutButton = false,
+                    PrintDestination = StiPrintDestination.Pdf,
+                },
+                Exports =
+                {
+                    ShowExportToDocument = false,
+                    ShowExportToImageBmp = false,
+                    ShowExportToXml = false,
+                    ShowExportToText = false,
+                    ShowExportToPowerPoint = false,
+                    ShowExportToRtf = true,
+                    ShowExportToHtml = false,
+                    ShowExportToOpenDocumentWriter = false,
+                    ShowExportToOpenDocumentCalc = false,
+                    ShowExportToWord2007 = false,
+                },
+                Appearance =
+                {
+                    ScrollbarsMode = true,
+                    InterfaceType = StiInterfaceType.Auto,
+                    ShowTooltips = true,
+                },
+                Server =
+                {
+                    RequestTimeout = 300,
+                    CacheMode = StiServerCacheMode.ObjectCache,
+                    GlobalReportCache = false,
+                },
+            })
+</body>
+</html>
