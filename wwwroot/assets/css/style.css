@@ -19,11 +19,11 @@ table.last-py-0 .list-inline-item:not(:last-child) {
 }
 
 .input-group-text {
-    padding: 0.5rem 1.5rem !important;
+    padding: 0.5rem 1.1rem !important;
 }
 
 .form-icon i {
-    left: 20px !important;
+    left: 13px !important;
 }
 
 label.required::after {
@@ -207,4 +207,9 @@ a.jstree-anchor.jstree-clicked {
     box-shadow: 0 2px 24px rgb(15 34 58 / 12%) !important;
     padding: 15px calc(1.5rem / 2) !important;
     height: 50px !important;
+}
+
+.form-control[readonly].only-datetime:not(.no-openClick) {
+    background-color: transparent !important;
+    opacity: 1;
 }

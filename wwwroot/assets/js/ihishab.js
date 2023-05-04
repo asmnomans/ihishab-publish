@@ -1,4 +1,6 @@
-﻿//axios.interceptors.request.use(
+﻿const placeholder = { value: '', label: 'Select . . ', placeholder: true };
+
+            //axios.interceptors.request.use(
 //    function (successfulReq) {
 //        console.log("Start axios");
 //    },
@@ -184,6 +186,9 @@ userSelection.forEach(link => {
         var dates = [];
         dates.push(isFlatpickerVal["data-disable-date"].value);
         dateData.disable = dates.toString().split(",");
+    }
+    if (isFlatpickerVal["class"] && isFlatpickerVal["class"].value.toString().includes("no-openClick")) {
+        dateData.clickOpens = false;
     }
     flatpickr(link, dateData);
 });
