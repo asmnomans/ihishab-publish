@@ -1,5 +1,32 @@
 ﻿const placeholder = { value: '', label: 'Select . . ', placeholder: true };
 
+const month_list = {
+    "january": 1,
+    "february": 2,
+    "march": 3,
+    "april": 4,
+    "may": 5,
+    "june": 6,
+    "july": 7,
+    "august": 8,
+    "september": 9,
+    "october": 10,
+    "november": 11,
+    "december": 12,
+    "jan": 1,
+    "feb": 2,
+    "mar": 3,
+    "apr": 4,
+    "may": 5,
+    "jun": 6,
+    "jul": 7,
+    "aug": 8,
+    "sep": 9,
+    "oct": 10,
+    "nov": 11,
+    "dec": 12,
+}
+
             //axios.interceptors.request.use(
 //    function (successfulReq) {
 //        console.log("Start axios");
@@ -425,5 +452,14 @@ function download_pdf(id, with_data) {
             });
             console.log(error);
         });
+};
+
+function text_to_date(date, format) {
+    let _date = date.split(' ')[0].split('-');
+    _date[1] = (100 + month_list[_date[1].toLowerCase()]).toString().slice(-2);
+    _date = _date.join('-');
+    _date = _date + ' 12:00:00';
+
+    return new Date(_date)
 };
 
