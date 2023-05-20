@@ -273,6 +273,13 @@ function make_choice(selector) {
         if (isChoicesVal["data-choices-text-disabled-true"]) {
             choiceData.addItems = false;
         }
+        choiceData.searchResultLimit = 1000;
+        choiceData.fuseOptions = {
+            threshold: 0.1,
+            distance: 1000
+        };
+        choiceData.searchFields = ['label'];
+
         choice_list[item.getAttribute('id')] = isChoicesVal["data-choices-text-disabled-true"]
             ? new Choices(item, choiceData).disable()
             : new Choices(item, choiceData);
