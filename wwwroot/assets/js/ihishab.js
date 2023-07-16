@@ -463,7 +463,7 @@ function download_pdf(id, with_data) {
 
 function text_to_date(date, format) {
     let _date = date.split(' ')[0].split('-');
-    _date[1] = (100 + month_list[_date[1].toLowerCase()]).toString().slice(-2);
+    //_date[1] = (100 + month_list[_date[1].toLowerCase()]).toString().slice(-2);
     _date = _date.join('-');
     _date = _date + ' 12:00:00';
 

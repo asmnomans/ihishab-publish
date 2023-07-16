@@ -37,6 +37,11 @@ label.required::after {
     font-weight: 500 !important;
 }
 
+.col-form-label-light {
+    padding-top: calc(0.25rem + 1px);
+    padding-bottom: calc(0.25rem + 1px);
+}
+
 .card-header {
     border-top: 1px solid var(--vz-border-color);
 }
@@ -85,6 +90,7 @@ tr.height-override td .form-control:not(input[type='password'],.ccnormal,textare
 
 .choices__inner {
     min-height: auto !important;
+    padding-right: 2.6rem !important;
 }
 
 tr.height-override td .choices__inner {
