@@ -470,3 +470,10 @@ function text_to_date(date, format) {
     return new Date(_date)
 };
 
+function text_to_value(text) {
+    return parseFloat(text.replace(/\,/g, ''));
+};
+
+function value_to_text(value, decimal_point = 2) {
+    return new Number(value).toFixed(decimal_point).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+};
