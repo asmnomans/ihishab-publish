@@ -93,6 +93,10 @@ tr.height-override td .form-control:not(input[type='password'],.ccnormal,textare
     padding-right: 2.6rem !important;
 }
 
+.choices__list.choices__list--dropdown {
+    min-width: max-content !important;
+}
+
 tr.height-override td .choices__inner {
     padding: 7% 0px !important;
 }
