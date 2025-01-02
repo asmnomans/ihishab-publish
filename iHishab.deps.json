@@ -2931,7 +2931,7 @@
         "runtime": {
           "System.Management.Automation.dll": {
             "assemblyVersion": "3.0.0.0",
-            "fileVersion": "10.0.22621.4249"
+            "fileVersion": "10.0.26100.2161"
           }
         }
       }
