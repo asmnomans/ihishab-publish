@@ -225,6 +225,7 @@ function make_choice(selector) {
     userSelection.forEach(item => {
         var choiceData = {};
         var isChoicesVal = item.attributes;
+        choiceData.shouldSort = false;
         if (isChoicesVal["data-choices-groups"]) {
             choiceData.placeholderValue = "This is a placeholder set in the config";
         }
@@ -242,7 +243,7 @@ function make_choice(selector) {
             choiceData.shouldSort = false;
         }
         if (isChoicesVal["data-choices-sorting-true"]) {
-            choiceData.shouldSort = true;
+            choiceData.shouldSort = false;
         }
         if (isChoicesVal["data-choices-multiple-default"]) {
             // choiceData.removeItemButton=true
