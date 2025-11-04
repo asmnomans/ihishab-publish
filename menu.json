@@ -1,0 +1,638 @@
+{
+  "Dashboard": {
+    "class": "bx bxs-dashboard",
+    "Controller": "Home",
+    "Action": "Index",
+    "Children": null
+  },
+  "Administration": {
+    "class": "ri-input-method-fill",
+    "Action": null,
+    "Controller": null,
+    "Children": [
+      {
+        "Menu": {
+          "class": null,
+          "Action": "MenuIndex",
+          "Controller": "Admin",
+          "Children": null
+        }
+      },
+	  { "dropdown-divider": {"class": "dropdown-divider" } },
+      {
+        "User": {
+          "class": null,
+          "Action": "UserCreate",
+          "Controller": "Admin",
+          "Children": null
+        }
+      },
+	  { "dropdown-divider": {"class": "dropdown-divider" } },
+      {
+        "Role": {
+          "class": null,
+          "Action": "RoleCreate",
+          "Controller": "Admin",
+          "Children": null
+        }
+      },
+	  { "dropdown-divider": {"class": "dropdown-divider" } },
+      {
+        "Role Permission": {
+          "class": null,
+          "Action": "AssignPermission",
+          "Controller": "Admin",
+          "Children": null
+        }
+      },
+      {
+        "User Role": {
+          "class": null,
+          "Action": "AssignRole",
+          "Controller": "Admin",
+          "Children": null
+        }
+      }
+    ]
+  },
+  "General Settings": {
+    "class": "ri-settings-5-fill",
+    "Controller": null,
+    "Action": null,
+    "Children": [
+      { "Organization Profile": { "class": null, "Controller": "Company", "Action": "Create", "Params": null, "Children": null } },
+	  { "dropdown-divider": {"class": "dropdown-divider" } },
+      { "Fiscal Year": { "class": null, "Controller": "Settings", "Action": "FiscalYearCreate", "Params": null, "Children": null } },
+	  { "dropdown-divider": {"class": "dropdown-divider" } },
+      { "Chart of Accounts": { "class": null, "Controller": "Accounts", "Action": "Manage", "Params": null, "Children": null } },
+	  { "dropdown-divider": {"class": "dropdown-divider" } },
+      { "Vendor Entry": { "class": null, "Controller": "Vendor", "Action": "Create", "Params": null, "Children": null } },
+	  { "dropdown-divider": {"class": "dropdown-divider" } },
+      { "Customer Entry": { "class": null, "Controller": "Customer", "Action": "Create", "Params": null, "Children": null } },
+	  { "dropdown-divider": {"class": "dropdown-divider" } },
+      { "Warehouse Entry": { "class": null, "Controller": "Warehouse", "Action": "Create", "Params": null, "Children": null } },
+	  { "dropdown-divider": {"class": "dropdown-divider" } },
+      { "Service Category": { "class": null, "Controller": "Prototype", "Action": "Create", "Params": { "id": "3F1C3FDA-C011-4FE3-9779-D510131016BF" }, "Children": null } },
+	  { "dropdown-divider": {"class": "dropdown-divider" } },
+      { "Job Entry": { "class": null, "Controller": "Project", "Action": "Create", "Params": null, "Children": null } },
+	  { "dropdown-divider": {"class": "dropdown-divider" } },
+      { "Bank Account": { "class": null, "Controller": "BankAccounts", "Action": "Create", "Params": null, "Children": null } },
+	  { "dropdown-divider": {"class": "dropdown-divider" } },
+      { "Upload Opening Balance": { "class": null, "Controller": "Miscellaneous", "Action": "Opening", "Params": null, "Children": null } }
+    ]
+  },
+  "Purchase": {
+    "class": "ri-file-ppt-2-fill",
+    "Controller": null,
+    "Action": null,
+    "Children": [
+      { "LC Entry": { "Controller": "LCInfoes", "Action": "Create", "Params": null, "Children": null } },
+	  { "dropdown-divider": {"class": "dropdown-divider" } },
+      { "Purchase Invoice (PI)": { "Controller": "PI", "Action": "Create", "Params": null, "Children": null } },
+	  { "dropdown-divider": {"class": "dropdown-divider" } },
+      { "Purchase Order": { "Controller": "Purchase", "Action": "Create", "Params": null, "Children": null } },
+      { "Goods Receive": { "Controller": "MaterialReceive", "Action": "Create", "Params": null, "Children": null } },
+	  { "dropdown-divider": {"class": "dropdown-divider" } },
+      {
+        "Bill Entry": {
+          "Controller": null,
+          "Action": null,
+          "Children": [
+            { "Material": { "Controller": "Bill", "Action": "Create", "Params": { "id": "mrr" }, "Children": null } }
+          ]
+        }
+      },
+      {
+        "Payment": {
+          "Controller": null,
+          "Action": null,
+          "Children": [
+            { "Payment Entry": { "Controller": "Payment", "Action": "Create", "Params": null, "Children": null } },
+            { "Bill/Asset Adjustment": { "Controller": "Payment", "Action": "Adjustment", "Params": null, "Children": null } }
+          ]
+        }
+      },
+	  { "dropdown-divider": {"class": "dropdown-divider" } },
+      { "Debit Note": { "Controller": "Voucher", "Action": "DebitNote", "Params": null, "Children": null } }
+    ]
+  },
+  "Inventory": {
+    "class": "ri-stack-fill",
+    "Controller": null,
+    "Action": null,
+    "Children": [
+      { "Category": { "Controller": "SubCategory", "Action": "Index", "Params": null, "Children": null } },
+      { "Product": { "Controller": "Product", "Action": "Create", "Params": null, "Children": null } },
+	  { "dropdown-divider": {"class": "dropdown-divider" } },
+      { "Issue to Job": { "Controller": "Issue", "Action": "Create", "Params": null, "Children": null } },
+	  { "dropdown-divider": {"class": "dropdown-divider" } },
+      {
+        "Stock": {
+          "Controller": null,
+          "Action": null,
+          "Children": [
+            { "Adjustment": { "Controller": "Stock", "Action": "Adustment", "Params": null, "Children": null } },
+            { "Transfer": { "Controller": "Stock", "Action": "Transfer", "Params": null, "Children": null } },
+            { "Write-Off": { "Controller": "Stock", "Action": "WriteOff", "Params": null, "Children": null } }
+          ]
+        }
+      }
+    ]
+  },
+  "Sales": {
+    "class": "ri-currency-fill",
+    "Controller": null,
+    "Action": null,
+    "Children": [
+      { "Price List (item wise)": { "Controller": "Product", "Action": "Price", "Params": null, "Children": null } },
+	  { "dropdown-divider": {"class": "dropdown-divider" } },
+      { "Sales Quotation/Order": { "Controller": "Sales", "Action": "Create", "Params": null, "Children": null } },
+      { "Delivery Challan": { "Controller": "Delivery", "Action": "Create", "Params": null, "Children": null } },
+	  { "dropdown-divider": {"class": "dropdown-divider" } },
+      { "Service Order": { "Controller": "Service", "Action": "Create", "Params": { "id": "sales" }, "Children": null } },
+	  { "dropdown-divider": {"class": "dropdown-divider" } },
+      { "Job Sales": { "Controller": "Project", "Action": "Sales", "Params": { "id": "create" }, "Children": null } },
+	  { "dropdown-divider": {"class": "dropdown-divider" } },
+      {
+        "Invoice": {
+          "Controller": null,
+          "Action": null,
+          "Children": [
+            { "Sales": { "Controller": "Invoice", "Action": "Create", "Params": { "id": "sales" }, "Children": null } },
+            { "Service": { "Controller": "Invoice", "Action": "Create", "Params": { "id": "service" }, "Children": null } },
+            { "Job": { "Controller": "Invoice", "Action": "Create", "Params": { "id": "job" }, "Children": null } }
+          ]
+        }
+      },
+	  { "dropdown-divider": {"class": "dropdown-divider" } },
+      { "Collection": { "Controller": "Collection", "Action": "Create", "Params": null, "Children": null } },
+	  { "dropdown-divider": {"class": "dropdown-divider" } },
+      { "Credit Note": { "Controller": "Voucher", "Action": "CreditNote", "Params": null, "Children": null } }
+    ]
+  },
+  "Voucher Entry": {
+    "class": "ri-bill-fill",
+    "Controller": null,
+    "Action": null,
+    "Children": [
+      {
+        "Exp. Payment": {
+          "Controller": null,
+          "Action": null,
+          "Children": [
+            { "Cash Payment": { "Controller": "Voucher", "Action": "Create", "Params": { "id": 26 }, "Children": null } },
+            { "Bank Payment": { "Controller": "Voucher", "Action": "Create", "Params": { "id": 28 }, "Children": null } }
+          ]
+        }
+      },
+      {
+        "Receipts": {
+          "Controller": null,
+          "Action": null,
+          "Children": [
+            { "Cash Receive": { "Controller": "Voucher", "Action": "Create", "Params": { "id": 27 }, "Children": null } },
+            { "Bank Receive": { "Controller": "Voucher", "Action": "Create", "Params": { "id": 29 }, "Children": null } }
+          ]
+        }
+      },
+	  { "dropdown-divider": {"class": "dropdown-divider" } },
+      { "Journal Voucher": { "Controller": "Voucher", "Action": "Create", "Params": { "id": 30 }, "Children": null } }
+    ]
+  },
+  "Fixed Assets": {
+    "class": "ri-community-fill",
+    "Controller": null,
+    "Action": null,
+    "Children": [
+      { "Sub Category": { "Controller": "AssetsType", "Action": "Create", "Params": null, "Children": null } },
+      {
+        "Assets Entry": {
+          "Controller": null,
+          "Action": null,
+          "Children": [
+            { "New Asset": { "Controller": "AssetsInfo", "Action": "Create", "Params": { "id": "new" }, "Children": null } },
+            { "Opening Asset": { "Controller": "AssetsInfo", "Action": "Create", "Params": { "id": "opening" }, "Children": null } },
+            { "Land": { "Controller": "AssetsInfo", "Action": "Create", "Params": { "id": "land" }, "Children": null } },
+			{ "dropdown-divider": {"class": "dropdown-divider" } },
+            { "Addition to Existing": { "Controller": "AssetsAdditions", "Action": "Create", "Params": null, "Children": null } }
+          ]
+        }
+      },
+	  { "dropdown-divider": {"class": "dropdown-divider" } },
+      { "Assets Transfer": { "Controller": "AssetsTransfers", "Action": "Create", "Params": null, "Children": null } },
+      { "Assets Adjustment": { "Controller": "AssetsInfo", "Action": "Adjustment", "Params": null, "Children": null } },
+	  { "dropdown-divider": {"class": "dropdown-divider" } },
+      { "Depreciation Process": { "Controller": "AssetsInfo", "Action": "Depreciation", "Params": null, "Children": null } }
+    ]
+  },
+  "Reports": {
+    "class": "ri-layout-3-fill",
+    "Action": null,
+    "Controller": null,
+    "Children": [
+      {
+        "General": {
+          "class": null,
+          "Action": null,
+          "Controller": null,
+          "Children": [
+            {
+              "Organization Profile": {
+                "class": null,
+                "Action": "Company",
+                "Controller": "Report",
+                "Children": null
+              }
+            },
+            {
+              "Chart of Account": {
+                "class": null,
+                "Action": "ChartOfAccount",
+                "Controller": "Report",
+                "Children": null
+              }
+            },
+            {
+              "Bank Account": {
+                "class": null,
+                "Action": "BankAccount",
+                "Controller": "Report",
+                "Children": null
+              }
+            },
+			{ "dropdown-divider": {"class": "dropdown-divider" } },
+            {
+              "Customer": {
+                "class": null,
+                "Action": "Customer",
+                "Controller": "Report",
+                "Children": null
+              }
+            },
+            {
+              "Vendor": {
+                "class": null,
+                "Action": "Vendor",
+                "Controller": "Report",
+                "Children": null
+              }
+            }
+          ]
+        }
+      },
+      {
+        "Sales": {
+          "class": null,
+          "Action": null,
+          "Controller": null,
+          "Children": [
+            {
+              "Sales Quotation": {
+                "class": null,
+                "Action": "SalesQuotation",
+                "Controller": "Report",
+                "Children": null
+              }
+            },
+            {
+              "Sales Order": {
+                "class": null,
+                "Action": "SalesOrder",
+                "Controller": "Report",
+                "Children": null
+              }
+            },
+			{ "dropdown-divider": {"class": "dropdown-divider" } },
+            {
+              "Sales Register": {
+                "class": null,
+                "Action": "SalesRegister",
+                "Controller": "Report",
+                "Children": null
+              }
+            },
+            {
+              "Sales Summary": {
+                "class": null,
+                "Action": "SalesSummary",
+                "Controller": "Report",
+                "Children": null
+              }
+            },
+			{ "dropdown-divider": {"class": "dropdown-divider" } },
+            {
+              "Delivery Challan": {
+                "class": null,
+                "Action": "Challan",
+                "Controller": "Report",
+                "Children": null
+              }
+            },
+            {
+              "Invoice": {
+                "class": null,
+                "Action": null,
+                "Controller": null,
+                "Children": [
+                  {
+                    "Sales": {
+                      "class": null,
+                      "Action": "SalesInvoice",
+                      "Controller": "Report",
+                      "Params": {
+                        "id": "sales"
+                      },
+                      "Children": null
+                    }
+                  },
+                  {
+                    "Service": {
+                      "class": null,
+                      "Action": "SalesInvoice",
+                      "Controller": "Report",
+                      "Params": {
+                        "id": "service"
+                      },
+                      "Children": null
+                    }
+                  },
+                  {
+                    "Job": {
+                      "class": null,
+                      "Action": "SalesInvoice",
+                      "Controller": "Report",
+                      "Params": {
+                        "id": "job"
+                      },
+                      "Children": null
+                    }
+                  }
+                ]
+              }
+            },
+			{ "dropdown-divider": {"class": "dropdown-divider" } },
+            {
+              "Account Receivable": {
+                "class": null,
+                "Action": "ARRegister",
+                "Controller": "Report",
+                "Children": null
+              }
+            }
+          ]
+        }
+      },
+      {
+        "Purchase": {
+          "class": null,
+          "Action": null,
+          "Controller": null,
+          "Children": [
+            {
+              "Purchase Invoice (PI)": {
+                "class": null,
+                "Action": "PurchaseInvoice",
+                "Controller": "Report",
+                "Children": null
+              }
+            },
+            {
+              "Purchase Order": {
+                "class": null,
+                "Action": "Purchase",
+                "Controller": "Report",
+                "Children": null
+              }
+            },
+            {
+              "Material Receive": {
+                "class": null,
+                "Action": "Receive",
+                "Controller": "Report",
+                "Children": null
+              }
+            },
+            {
+              "Bill": {
+                "class": null,
+                "Action": "Bill",
+                "Controller": "Report",
+                "Children": null
+              }
+            }
+          ]
+        }
+      },
+      {
+        "Inventory": {
+          "class": null,
+          "Action": null,
+          "Controller": null,
+          "Children": [
+            {
+              "Category": {
+                "class": null,
+                "Action": "Category",
+                "Controller": "Report",
+                "Children": null
+              }
+            },
+            {
+              "Sub Category": {
+                "class": null,
+                "Action": "SubCategory",
+                "Controller": "Report",
+                "Children": null
+              }
+            },
+            {
+              "Product": {
+                "class": null,
+                "Action": "Product",
+                "Controller": "Report",
+                "Children": null
+              }
+            },
+            {
+              "Product Pricing": {
+                "class": null,
+                "Action": "Pricing",
+                "Controller": "Report",
+                "Children": null
+              }
+            },
+            {
+              "Product Ledger": {
+                "class": null,
+                "Action": "Ledger",
+                "Controller": "Product",
+                "Children": null
+              }
+            }
+          ]
+        }
+      },
+      {
+        "Voucher": {
+          "class": null,
+          "Action": null,
+          "Controller": null,
+          "Children": [
+            {
+              "Voucher": {
+                "class": null,
+                "Action": "Voucher",
+                "Controller": "Report",
+                "Children": null
+              }
+            },
+            {
+              "Voucher Details": {
+                "class": null,
+                "Action": "VoucherRegister",
+                "Controller": "Report",
+                "Children": null
+              }
+            },
+            {
+              "Voucher Summary": {
+                "class": null,
+                "Action": "VoucherSummary",
+                "Controller": "Report",
+                "Children": null
+              }
+            }
+          ]
+        }
+      },
+      {
+        "Assets": {
+          "class": null,
+          "Action": null,
+          "Controller": null,
+          "Children": [
+            {
+              "Assets Profile": {
+                "class": null,
+                "Action": "Assets",
+                "Controller": "Report",
+                "Children": null
+              }
+            },
+			{ "dropdown-divider": {"class": "dropdown-divider" } },
+            {
+              "Assets Info": {
+                "class": null,
+                "Action": "AssetInfo",
+                "Controller": "Report",
+                "Children": null
+              }
+            },
+            {
+              "Assets Register": {
+                "class": null,
+                "Action": "AssetRegister",
+                "Controller": "Report",
+                "Children": null
+              }
+            },
+            {
+              "Assets Schedule": {
+                "class": null,
+                "Action": "AssetSchedule",
+                "Controller": "Report",
+                "Children": null
+              }
+            },
+			{ "dropdown-divider": {"class": "dropdown-divider" } },
+            {
+              "Addition": {
+                "class": null,
+                "Action": "AssetAddition",
+                "Controller": "Report",
+                "Children": null
+              }
+            },
+            {
+              "Transfer": {
+                "class": null,
+                "Action": "AssetTranser",
+                "Controller": "Report",
+                "Children": null
+              }
+            },
+			{ "dropdown-divider": {"class": "dropdown-divider" } },
+            {
+              "Depreciation Register": {
+                "class": null,
+                "Action": "Depreciation",
+                "Controller": "Report",
+                "Children": null
+              }
+            },
+            {
+              "Depreciation History": {
+                "class": null,
+                "Action": "AssetDepreciation",
+                "Controller": "Report",
+                "Children": null
+              }
+            }
+          ]
+        }
+      },
+      {
+        "Financial Statements": {
+          "class": null,
+          "Action": null,
+          "Controller": null,
+          "Children": [
+            {
+              "Ledger Details": {
+                "class": null,
+                "Action": "Ledger",
+                "Controller": "Accounts",
+                "Children": null
+              }
+            },
+			{ "dropdown-divider": {"class": "dropdown-divider" } },
+            {
+              "Trial Balance": {
+                "class": null,
+                "Action": "TrialBalance",
+                "Controller": "Report",
+                "Children": null
+              }
+            },
+			{ "dropdown-divider": {"class": "dropdown-divider" } },
+            {
+              "PL (Income Statement)": {
+                "class": null,
+                "Action": "PL",
+                "Controller": "Report",
+                "Children": null
+              }
+            },
+            {
+              "Balance Sheet": {
+                "class": null,
+                "Action": "BalanceSheet",
+                "Controller": "Report",
+                "Children": null
+              }
+            },
+			{ "dropdown-divider": {"class": "dropdown-divider" } },
+            {
+              "Notes Report": {
+                "class": null,
+                "Action": "Notes",
+                "Controller": "Report",
+                "Children": null
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
