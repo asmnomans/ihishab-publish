@@ -130,7 +130,10 @@ td .form-control {
     border: none !important;
 }
 
-.text-danger {
+/* Hides validation messages until their field is invalid. Was written as a bare
+   ".text-danger", which also hid every other red element on the site — badges,
+   icons, links — so it is scoped to the spans ASP.NET actually emits. */
+.text-danger[data-valmsg-for], .text-danger.field-validation-valid, .text-danger.validation-summary-valid {
     display: none;
 }
 
@@ -173,10 +176,60 @@ tfoot .btn {
     border: none !important;
 }
 
+/* The company name stays on one line. It is a real company name, so it can be
+   anything from "RBSSL" to "THE CORPORATE ADVISORY & CONSULTANCY LIMITED" —
+   fit_company_caption() in ihishab.js shrinks the size from 2rem until it fits
+   the space the topbar has left. Ellipsis is the floor, past which shrinking
+   would stop being readable. */
+.company_caption {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.company_caption .choices,
+.company_caption .choices__inner {
+    width: 100%;
+}
+
 .company_caption .choices__inner .choices__list.choices__list--single {
     color: rgba(255,255,255,.85) !important;
     font-size: 2rem !important;
     font-weight: bolder !important;
+    white-space: nowrap;
+}
+
+.company_caption .choices__list--single .choices__item {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* The company name is centred in the space the topbar gives it. company_caption is
+   flex:1 1 auto between the logo and the toolbar icons, and the name was sitting at
+   the left of that band. Set on the item as well as the container because the widget
+   fills the width, so centring the flex box alone would not move the text.
+
+   Choices' own padding is asymmetric (16px left against 4px right, for the dropdown
+   arrow). Left as-is that offsets the text; equalising both sides keeps the name
+   optically centred while leaving room for the arrow. Scoped to company_caption
+   throughout, so no other dropdown in the app is affected. */
+.company_caption .choices__inner .choices__list.choices__list--single,
+.company_caption .choices__list--single .choices__item {
+    text-align: center !important;
+}
+
+/* The open dropdown keeps its list left-aligned. text-align inherits, so setting it
+   on the widget root would centre the options too -- only the selected name is
+   centred, which is why the rule above names choices__list--single and nothing
+   higher. This is belt and braces in case a parent picks it up some other way. */
+.company_caption .choices__list--dropdown,
+.company_caption .choices__list--dropdown .choices__item {
+    text-align: left !important;
+}
+
+.company_caption .choices__list--single {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
 }
 
 .company_caption .choices[data-type*=select-one]:after {
@@ -212,8 +265,13 @@ a.jstree-anchor.jstree-clicked {
     color: cornflowerblue !important;
 }
 
+/* Absolute, which is the theme's own value, not fixed. Pinned to the viewport the bar sat on
+   top of whatever content was at the bottom of the screen at every scroll position but the very
+   last -- measured on the dashboard it hid 50px of the first chart, 42px of a row of figures and
+   16px of the lists. The page-content's 60px of bottom padding is what keeps the last row clear
+   of it, and that only works when the bar is at the end of the page rather than over it. */
 .footer {
-    position: fixed !important;
+    position: absolute !important;
     box-shadow: 0 2px 24px rgb(15 34 58 / 12%) !important;
     padding: 15px calc(1.5rem / 2) !important;
     height: 50px !important;
@@ -222,4 +280,37 @@ a.jstree-anchor.jstree-clicked {
 .form-control[readonly].only-datetime:not(.no-openClick) {
     background-color: transparent !important;
     opacity: 1;
+}
+/* Submenus open to the right by default. Near the right edge of the window that
+   puts them off-screen, so fit_menu_dropdowns() in ihishab.js flips the ones
+   that would overflow. Top level opens back from the item's right edge, nested
+   levels open to the left of their parent. */
+[data-layout="horizontal"] .menu-dropdown.menu-dropdown-left {
+    left: auto;
+    right: 0;
+}
+
+[data-layout="horizontal"] .menu-dropdown .menu-dropdown.menu-dropdown-left {
+    left: auto;
+    right: 100%;
+}
+
+/* Top-level menu items scale as a unit: the padding is in em so it follows the
+   font size, which lets fit_menu_bar() in ihishab.js shrink one variable until
+   the whole bar fits. With the theme's rem padding, shrinking the text alone
+   reclaimed almost nothing — the gaps between items are most of the width. */
+[data-layout="horizontal"] .navbar-menu .navbar-nav > .nav-item > .nav-link {
+    font-size: var(--ih-menu-font, .925rem);
+    white-space: nowrap;
+    padding-left: 1.62em;
+    padding-right: 1.62em;
+}
+
+/* The assistant launcher sits above the theme customizer's, using the same fixed corner. Its own
+   offset rather than a shared stack: the two are independent partials and either may be absent. */
+.assistant-launcher {
+    position: fixed;
+    bottom: 100px;
+    right: 20px;
+    z-index: 1000;
 }

@@ -285,10 +285,16 @@ function make_choice(selector) {
             ? new Choices(item, choiceData).disable()
             : new Choices(item, choiceData);
 
-        let parent_element = document.getElementById(item.getAttribute('id')).parentElement.parentElement.parentElement;
-        let fragment = document.createDocumentFragment();
-        fragment.appendChild(document.getElementById(item.getAttribute('id')));
-        parent_element.prepend(fragment);
+        // A select with no id cannot be found again here. That used to throw, and because this
+        // runs at the top level of the file, the exception aborted everything after it —
+        // including the listeners registered at the end. Skip the reposition instead.
+        let element = document.getElementById(item.getAttribute('id'));
+        if (element) {
+            let parent_element = element.parentElement.parentElement.parentElement;
+            let fragment = document.createDocumentFragment();
+            fragment.appendChild(element);
+            parent_element.prepend(fragment);
+        }
     });
 }
 
@@ -478,3 +484,160 @@ function text_to_value(text) {
 function value_to_text(value, decimal_point = 2) {
     return new Number(value).toFixed(decimal_point).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 };
+
+
+// Fits the company name in the topbar on one line by shrinking it until the
+// whole name is inside its container. Company names run from an acronym to a
+// full legal name, so a fixed size either wraps onto a second line or wastes
+// the space. The size is set on the item rather than the list because the
+// stylesheet's font-size on the list is !important.
+function fit_company_caption() {
+    const item = document.querySelector('.company_caption .choices__list--single .choices__item');
+    if (!item) return;
+
+    // Width the text wants, measured with the clipping turned off — with it on,
+    // an overflowing name measures as exactly the width it was cut to.
+    const naturalWidth = function () {
+        const size = item.style.fontSize;
+        const style = item.style.cssText;
+        item.style.overflow = 'visible';
+        item.style.textOverflow = 'clip';
+        item.style.width = 'max-content';
+        const width = item.getBoundingClientRect().width;
+        item.style.cssText = style;
+        item.style.fontSize = size;
+        return width;
+    };
+
+    const max = 2, min = 0.95, step = 0.05;   // rem
+    const arrow = 28;                          // the dropdown chevron sits over the text's right edge
+    let size = max;
+    item.style.fontSize = size + 'rem';
+
+    while (size > min && naturalWidth() > item.clientWidth - arrow) {
+        size -= step;
+        item.style.fontSize = size.toFixed(2) + 'rem';
+    }
+}
+
+// Choices rebuilds the selected item whenever the value is set, which can happen
+// after load and again when a company is picked — a one-shot call at load gets
+// thrown away with the element it styled. Watching the container covers every
+// case without guessing at a delay.
+function watch_company_caption() {
+    const holder = document.querySelector('.company_caption');
+    if (!holder) return;
+
+    fit_company_caption();
+
+    new MutationObserver(function () {
+        fit_company_caption();
+    }).observe(holder, { childList: true, subtree: true, characterData: true });
+}
+
+window.addEventListener('load', watch_company_caption);
+window.addEventListener('resize', fit_company_caption);
+
+// Fullscreen toggle. The theme binds this button itself, but its layout script
+// throws on this app's horizontal topbar — it expects a vertical sidebar's
+// #scrollbar element — and gives up before reaching the binding, so the icon did
+// nothing. Binding it here keeps it working whatever the theme file does.
+function toggle_fullscreen(event) {
+    if (event) event.preventDefault();
+
+    document.body.classList.toggle('fullscreen-enable');
+
+    const open = document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement;
+
+    if (open) {
+        (document.exitFullscreen || document.webkitExitFullscreen || document.mozCancelFullScreen).call(document);
+    } else {
+        const el = document.documentElement;
+        (el.requestFullscreen || el.webkitRequestFullscreen || el.mozRequestFullScreen).call(el);
+    }
+}
+
+// Leaving fullscreen with Escape does not go through the button, so the class
+// has to follow the browser rather than the click.
+function sync_fullscreen_class() {
+    const open = document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement;
+    document.body.classList.toggle('fullscreen-enable', !!open);
+}
+
+window.addEventListener('load', function () {
+    const button = document.querySelector('[data-toggle="fullscreen"]');
+    if (button) button.addEventListener('click', toggle_fullscreen);
+});
+
+document.addEventListener('fullscreenchange', sync_fullscreen_class);
+document.addEventListener('webkitfullscreenchange', sync_fullscreen_class);
+
+// Flips a submenu to the left when opening it to the right would run off the
+// window. The theme opens these on hover through CSS alone, so there is no event
+// to hook — measure on the way in, once the element is displayed.
+function fit_menu_dropdown(dropdown) {
+    dropdown.classList.remove('menu-dropdown-left');
+
+    const margin = 8;
+    if (dropdown.getBoundingClientRect().right > window.innerWidth - margin) {
+        dropdown.classList.add('menu-dropdown-left');
+    }
+}
+
+document.addEventListener('mouseover', function (event) {
+    const target = event.target instanceof Element ? event.target : null;
+    const item = target && target.closest('.navbar-nav .nav-item');
+    if (!item) return;
+
+    const dropdown = item.querySelector(':scope > .menu-dropdown');
+    // Next frame: on the first hover the dropdown is still display:none, and a
+    // hidden element measures as zero.
+    if (dropdown) requestAnimationFrame(function () { fit_menu_dropdown(dropdown); });
+});
+
+// Shrinks the top-level menu until every item fits on the bar. The horizontal
+// theme lays the items out at a fixed size and simply lets the last ones fall
+// off the right edge — on a smaller screen that hides whole sections with no
+// indication they exist.
+function fit_menu_bar() {
+    const menu = document.getElementById('navbar-nav');
+    if (!menu) return;
+
+    const max = 0.925, min = 0.65, step = 0.025;   // rem
+    let size = max;
+    menu.style.setProperty('--ih-menu-font', size + 'rem');
+
+    // scrollWidth is what the items need, clientWidth what the bar has.
+    while (size > min && menu.scrollWidth > menu.clientWidth) {
+        size -= step;
+        menu.style.setProperty('--ih-menu-font', size.toFixed(3) + 'rem');
+    }
+}
+
+window.addEventListener('load', fit_menu_bar);
+window.addEventListener('resize', fit_menu_bar);
+
+// Locks the screen after a spell of inactivity. Accounting screens sit open on shared desks;
+// this keeps the session — company selection and all — while putting a password between the
+// desk and the data. Signing out would lose that context and annoy people into avoiding it.
+const LOCK_AFTER_MINUTES = 15;
+
+let lock_timer = null;
+
+function lock_screen() {
+    // Navigating to /Lock is what locks: the page sets the flag server-side, so a click and the
+    // idle timer take the same path and there is no window where the flag is set but the page is
+    // not shown.
+    window.location.href = '/Lock';
+}
+
+function reset_lock_timer() {
+    if (lock_timer) clearTimeout(lock_timer);
+    lock_timer = setTimeout(lock_screen, LOCK_AFTER_MINUTES * 60 * 1000);
+}
+
+['mousemove', 'mousedown', 'keydown', 'scroll', 'touchstart'].forEach(function (event) {
+    document.addEventListener(event, reset_lock_timer, { passive: true });
+});
+
+reset_lock_timer();
